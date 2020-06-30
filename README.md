@@ -25,7 +25,8 @@ Create a new database called `prime_app` and create a `user` table:
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "password" VARCHAR (1000) NOT NULL,
+    "admin" BOOL SET DEFAULT FALSE
 );
 ```
 
