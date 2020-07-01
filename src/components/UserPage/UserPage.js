@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import StartNewSurvey from '../LoadSurveys/LoadSurveys'
+import NewSurvey from '../LoadSurveys/LoadSurveys';
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
@@ -15,7 +15,7 @@ const UserPage = (props) => (
     {/* <button onClick={this.startSurvey}>Start New Survey</button>
     <button onClick={this.viewCompletedSurveys}>View Completed Surveys</button> */}
     <p>Your ID is: {props.user.id}</p>
-    <StartNewSurvey/>
+    <NewSurvey/>
     <LogOutButton className="log-in" />
   </div>
 );

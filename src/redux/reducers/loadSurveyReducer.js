@@ -1,4 +1,4 @@
-const loadSurveyReducer = (state = {}, action) => {
+const loadSurveyReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_SURVEY':
             return action.payload;

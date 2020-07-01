@@ -45,10 +45,10 @@ class App extends Component {
             they will see the info page instead. */}
             <ProtectedRoute exact path="/info" component={InfoPage} />
             {/* If none of the other routes matched, we will show a 404. */}
+            <ProtectedRoute exact path='/NewSurvey' component={NewSurvey}/>
             <Route render={() => <h1>404</h1>} />
-            <NewSurvey/>
           </Switch>
-          <ProtectedRoute exact path='/NewSurvey' component={NewSurvey}/>
+
           <Footer />
         </div>
       </Router>
