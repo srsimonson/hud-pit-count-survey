@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import StartNewSurvey from '../StartNewSurvey/StartNewSurvey'
+import StartNewSurvey from '../LoadSurveys/LoadSurveys'
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
