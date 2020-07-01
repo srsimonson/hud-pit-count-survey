@@ -7,11 +7,11 @@ function* loadSurveySaga() {
     // yield takeEvery('FETCH_ALL_SURVEYS', allSurveys)
 }
 
-function* newSurvey(action) {
-    console.log('action.payload:', action);
+function* newSurvey() {
+    // console.log('action.payload:', action.payload);
     
     try {
-        const elementsResponse = yield axios.get('/')
+        const elementsResponse = yield axios.get(`/api/survey`)
         yield put({type: 'SET_SURVEY', payload: elementsResponse.data})
     } catch (error) {
         console.log('ERROR with newSurvey in loadSurveysSaga.js', error);  
