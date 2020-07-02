@@ -26,8 +26,6 @@ viewCompletedSurveys = () => {
   
 }
 
-
-
 render () {
   return (
     <div>

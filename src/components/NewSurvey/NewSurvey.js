@@ -9,7 +9,9 @@ class NewSurvey extends Component {
   }
 
   componentDidMount = () => {
-    this.props.dispatch ({ type: 'FETCH_NEW_SURVEY'})
+    this.props.dispatch ({ 
+      type: 'FETCH_NEW_SURVEY'
+    })
     this.setState({
       user_id: this.props.reduxStore.user.id
     })    
@@ -23,7 +25,9 @@ class NewSurvey extends Component {
   }
 
   save = () => {
-    this.props.dispatch({ type: 'ADD_ANSWER', payload: this.state.surveyAnswer});
+    this.props.dispatch({ 
+      type: 'SAVE_ANSWER', 
+      payload: this.state.surveyAnswer});
   }
 
   render() {

@@ -25,7 +25,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/api/survey', surveyRouter); // I added this line
+app.use('/api/survey', surveyRouter);
 
 // Serve static files
 app.use(express.static('build'));
