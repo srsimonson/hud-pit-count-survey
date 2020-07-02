@@ -24,7 +24,7 @@ function* allSurveys() {
     console.log('in allSurveys');
     
     try {
-        const elementsResponse = yield axios.get(`/api/survey`)
+        const elementsResponse = yield axios.get(`/api/survey/all`)
         yield put({
             type: 'SET_ALL_SURVEYS',
             payload: elementsResponse.data

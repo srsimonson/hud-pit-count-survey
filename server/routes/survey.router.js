@@ -22,6 +22,19 @@ router.get('/', (req, res) => {
     })
 });
 
+router.get('/all', (req, res) => {
+    let sqlText = `SELECT * FROM survey;`;
+    pool.query(sqlText)
+    .then(result => {
+        res.send(result.rows);
+        res.sendStatus(200);
+    })
+    .catch(error => {
+        console.log('ERROR with GET in survey.router', error);
+        res.sendStatus(500);
+    })
+});
+
 router.post('/', (req, res) => {
     let user_id = req.body.user_id;
     let surveyAnswer = req.body.surveyAnswer;
@@ -35,5 +48,20 @@ router.post('/', (req, res) => {
         res.sendStatus(200);
     })
 });
+
+router.delete('/:id', (req, res) => {
+    let id = req.params.id
+    let sqlText = `DELETE FROM survey WHERE survey_id = $1;`;
+    console.log('req.params.id', id);
+    pool.query(sqlText, [id])
+    .then((result) => {
+        console.log('result:', result.rows);
+        res.sendStatus(200);
+    })
+    .catch((error) => {
+        console.log('DELETE ERROR', error);
+        res.sendStatus(500);
+    })
+})
 
 module.exports = router;

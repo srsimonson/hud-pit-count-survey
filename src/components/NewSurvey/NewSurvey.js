@@ -41,6 +41,7 @@ class NewSurvey extends Component {
         <div>
           <h1>New Survey</h1>
           {/* <p>{JSON.stringify(question)}</p> */}
+          {/* <p>{JSON.stringify(this.props.reduxStore)}</p> */}
           <ul>
             {question.map(item =>
               <li key={item.id}>

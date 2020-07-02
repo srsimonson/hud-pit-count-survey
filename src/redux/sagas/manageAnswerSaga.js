@@ -2,22 +2,33 @@ import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 
-function* saveAnswerSaga() {
+function* manageAnswerSaga() {
     yield takeLatest('SAVE_ANSWER', saveAnswer)
+    yield takeLatest('DELETE_ANSWER', deleteAnswer)
 }
 
 function* saveAnswer(action) {
     console.log('action.payload:', action.payload);
-    
     try {
         const elementsResponse = yield axios.post(`/api/survey`, action.payload)
         yield put({
             type: 'SET_ANSWER', 
             payload: elementsResponse.data
-        })
-    } catch (error) {
+            })
+        } catch (error) {
         console.log('ERROR from saveAnswer in saveAnswerSaga.js', error);  
     }
 }
 
-export default saveAnswerSaga;
+function* deleteAnswer(action) {
+    console.log('deleteAnswer:', action.payload);
+    try {
+        const elementsResponse = yield axios.delete(`api/survey/${action.payload}`)
+        yield put ({ type: 'REMOVE_ANSWER' });
+    }
+        catch (error) {
+            console.log('ERROR from deleteAnswer in saveAnswerSaga');
+        }
+}
+
+export default manageAnswerSaga;
