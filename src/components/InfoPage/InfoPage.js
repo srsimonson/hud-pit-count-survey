@@ -8,6 +8,8 @@ class InfoPage extends Component {
   }
 
   update = () => {
+    console.log('hi');
+    
   }
 
   delete = () => {
@@ -38,7 +40,14 @@ class InfoPage extends Component {
           <tr>
               <th>Survey ID</th>
               <th>User ID</th>
-              <th>TEST DATA</th>
+              <th>TEST DATA 1</th>
+              <th>TEST DATA 2</th>
+              <th>TEST DATA 3</th>
+              <th>TEST DATA 4</th>
+              <th>TEST DATA 5</th>
+              <th>TEST DATA 6</th>
+              <th>TEST DATA 7</th>
+              <th>TEST DATA 8</th>
               <th colspan="2">Manage Data</th>
           </tr>
         </thead>
@@ -46,7 +55,10 @@ class InfoPage extends Component {
             <tr key={item.id}>
               <td>{item.survey_id}</td>
               <td>{item.user_id}</td>
-              <td>{item.survey_location}</td>
+              <td>
+                <input placeholder = {item.survey_location}></input>
+                {/* {item.survey_location} */}
+              </td>
 
               {/* update button */}
               <td>

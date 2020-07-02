@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './NewSurvey.css';
 
 class NewSurvey extends Component {
 
@@ -42,9 +43,11 @@ class NewSurvey extends Component {
           <h1>New Survey</h1>
           {/* <p>{JSON.stringify(question)}</p> */}
           {/* <p>{JSON.stringify(this.props.reduxStore)}</p> */}
-          <ul>
+          <ul className="accordion" data-accordion>
             {question.map(item =>
-              <li key={item.id}>
+              <li key={item.id} className="accordion-item is-active" data-accordion-item>
+                <a href="#" class="accordion-title">Accordion 1</a>
+                <div class="accordion-content" data-tab-content ></div>
                 {item.question_text}
               { item.response_type !== 'dropdown' 
               ? 
