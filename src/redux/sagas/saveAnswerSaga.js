@@ -7,6 +7,8 @@ function* saveAnswerSaga() {
 }
 
 function* saveAnswer(action) {
+    console.log('action.payload:', action.payload);
+    
     try {
         const elementsResponse = yield axios.post(`/api/survey`, action.payload)
         yield put({

@@ -27,11 +27,14 @@ class NewSurvey extends Component {
   save = () => {
     this.props.dispatch({ 
       type: 'SAVE_ANSWER', 
-      payload: this.state.surveyAnswer});
+      payload: this.state
+    });
   }
 
   render() {
     console.log('asdf this.state', this.state);
+    console.log('this.props.reduxStore.loadSurvey', this.props.reduxStore.loadSurvey);
+    
 
     const question = this.props.reduxStore.loadSurvey
     return (

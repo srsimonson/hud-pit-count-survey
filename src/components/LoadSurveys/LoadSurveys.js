@@ -22,6 +22,7 @@ startNewSurvey = () => {
 }
 
 viewCompletedSurveys = () => {
+  this.props.dispatch ({ type: 'FETCH_ALL_SURVEYS'});
   console.log('in viewCompletedSurveys');
   
 }

@@ -23,9 +23,13 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+    let user_id = req.body.user_id;
+    let surveyAnswer = req.body.surveyAnswer;
+    console.log('req.body:', req.body);
+    
     let sqlText = `INSERT INTO survey (user_id, survey_location)
     VALUES ($1, $2);`;
-    pool.query(sqlText, [req.body.user_id, req.body.surveyAnswer])
+    pool.query(sqlText, [user_id, surveyAnswer])
     .then(result => {
         res.send(result.rows);
         res.sendStatus(200);
