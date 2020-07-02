@@ -6,6 +6,13 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
+    // let sqlText = `SELECT * FROM question
+    // // JOIN response ON question.question_id = response.question_id;
+    // // `
+    // let sqlText = `SELECT question.question_id, question.question_text, json_agg(response.description) AS test FROM question
+    // JOIN response ON question.question_id = response.question_id
+    // GROUP BY question.question_id
+    // ORDER BY question.question_id ASC;`
     let sqlText = `SELECT * FROM question;`;
     pool.query(sqlText)
     .then(result => {

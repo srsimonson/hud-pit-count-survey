@@ -17,9 +17,11 @@ class NewSurvey extends Component {
     return (
         <div>
           <h1>New Survey</h1>
+          <p>{JSON.stringify(question)}</p>
           <ul>
-            {question && question.map(item =>
-              <li key={item.id}>{item.question_text}
+            {question.map(item =>
+              <li key={item.id}>
+                {item.question_text}
               { item.response_type !== 'dropdown' 
               ? 
               <input type={item.response_type}></input> 
@@ -31,7 +33,9 @@ class NewSurvey extends Component {
                }
               </li>)}
           </ul>
-          <p>{JSON.stringify(question)}</p>
+          <button>BACK</button>
+          <button>SAVE</button>
+          <p>{this.props.reduxStore.loadSurvey[7] && JSON.stringify(this.props.reduxStore.loadSurvey[7].test)}</p>
         </div>
     );
   }
