@@ -3,38 +3,55 @@ import { connect } from 'react-redux';
 
 class NewSurvey extends Component {
 
+  state = {
+    user_id: this.props.reduxStore.user.id,
+    surveyAnswer: '',
+  }
+
   componentDidMount = () => {
-    console.log('in newSurvey');
-    this.props.dispatch ({ type: 'FETCH_NEW_SURVEY'})    
+    this.props.dispatch ({ type: 'FETCH_NEW_SURVEY'})
+    this.setState({
+      user_id: this.props.reduxStore.user.id
+    })    
+  }
+
+  handleChange = (event) => {
+    console.log('hi', event.target.value);
+    this.setState({
+      surveyAnswer: event.target.value
+    })
+  }
+
+  save = () => {
+    this.props.dispatch({ type: 'ADD_ANSWER', payload: this.state.surveyAnswer});
   }
 
   render() {
-    console.log('this.props.reduxStore.loadSurvey:', this.props.reduxStore.loadSurvey);
-    
+    console.log('asdf this.state', this.state);
+
     const question = this.props.reduxStore.loadSurvey
-    console.log('question', question);
-    
     return (
         <div>
           <h1>New Survey</h1>
-          <p>{JSON.stringify(question)}</p>
+          {/* <p>{JSON.stringify(question)}</p> */}
           <ul>
             {question.map(item =>
               <li key={item.id}>
                 {item.question_text}
               { item.response_type !== 'dropdown' 
               ? 
-              <input type={item.response_type}></input> 
+              <input type={item.response_type} onChange={this.handleChange}></input> 
               :
-               <select>
-                 <option value='test1'>TEST 1</option>
-                 <option value='test2'>TEST 2</option>
+               <select onChange={this.handleChange}>
+                 <option disabled selected value>Choose</option>
+                 <option value='test_one'>TEST 1</option>
+                 <option value='test_two'>TEST 2</option>
                </select> 
                }
               </li>)}
           </ul>
           <button>BACK</button>
-          <button>SAVE</button>
+          <button onClick={this.save}>SAVE</button>
           <p>{this.props.reduxStore.loadSurvey[7] && JSON.stringify(this.props.reduxStore.loadSurvey[7].test)}</p>
         </div>
     );
