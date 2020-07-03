@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './NewSurvey.css';
+import './NewSurvey.scss';
 // // import bulmaCollapsible from '@creativebulma/bulma-collapsible';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import {Accordion, Card} from 'react-bootstrap';
@@ -110,7 +110,7 @@ class NewSurvey extends Component {
         <Accordion allowMultiple={true}>
         {question.map(item => {
           return (
-            <AccordionItem title={`Question ${item.question_id}`} expanded={item === 1}>
+            <AccordionItem title={item.question_header} expanded={item === 1}>
               <div className="kandri">
                 {item.question_text}
               </div>

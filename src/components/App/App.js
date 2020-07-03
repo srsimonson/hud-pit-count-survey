@@ -18,7 +18,7 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import NewSurvey from '../NewSurvey/NewSurvey';
 
-import './App.css';
+import './App.scss';
 
 class App extends Component {
   componentDidMount () {
