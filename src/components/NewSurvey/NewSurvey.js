@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './NewSurvey.scss';
-// // import bulmaCollapsible from '@creativebulma/bulma-collapsible';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import {Accordion, Card} from 'react-bootstrap';
-// import { Accordion, AccordionItem } from 'react-light-accordion'
-import { Accordion, AccordionItem } from 'react-sanfona';
-
 
 class NewSurvey extends Component {
 
@@ -48,7 +42,7 @@ class NewSurvey extends Component {
       <>
         <div>
           <h1>New Survey</h1>
-          <p>{JSON.stringify(question)}</p>
+          {/* <p>{JSON.stringify(question)}</p> */}
           {/* <p>{JSON.stringify(this.props.reduxStore)}</p> */}
           <ul>
             {question.map(item =>
@@ -70,56 +64,6 @@ class NewSurvey extends Component {
           <button onClick={this.save}>SAVE</button>
           <p>{this.props.reduxStore.loadSurvey[7] && JSON.stringify(this.props.reduxStore.loadSurvey[7].test)}</p>
         </div>
-{/* 
-        <Accordion defaultActiveKey="0">
-
-          <Card>
-            <Accordion.Toggle as={Card.Header} eventKey="0">Click me!</Accordion.Toggle>
-            <Accordion.Collapse eventKey="0">
-              <Card.Body><button>hi</button></Card.Body>
-            </Accordion.Collapse>
-          </Card>
-
-          <Card>
-            <Accordion.Toggle as={Card.Header} eventKey="1">
-              Click me!
-            </Accordion.Toggle>
-            <Accordion.Collapse eventKey="1">
-              <Card.Body>Hello! I'm another body</Card.Body>
-            </Accordion.Collapse>
-          </Card>
-
-        </Accordion> */}
-
-        <div>
-          <h1>New Survey</h1>
-          <Accordion>
-            <ul>
-            {question.map(item => <li key={item.id}>
-              
-                <p>{item.question_text}</p>
-    
-              </li>)}
-            </ul>
-          </Accordion>
-          <button>BACK</button>
-          <button onClick={this.save}>SAVE</button>
-          <p>{this.props.reduxStore.loadSurvey[7] && JSON.stringify(this.props.reduxStore.loadSurvey[7].test)}</p>
-        </div>
-
-        <Accordion allowMultiple={true}>
-        {question.map(item => {
-          return (
-            <AccordionItem title={item.question_header} expanded={item === 1}>
-              <div className="kandri">
-                {item.question_text}
-              </div>
-            </AccordionItem>
-          );
-        })}
-      </Accordion>
-
-
 </>
     );
   }

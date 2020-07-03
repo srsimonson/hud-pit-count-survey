@@ -17,6 +17,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import NewSurvey from '../NewSurvey/NewSurvey';
+import AccordionView from '../AccordionView/AccordionView';
 
 import './App.scss';
 
@@ -46,6 +47,7 @@ class App extends Component {
             <ProtectedRoute exact path="/info" component={InfoPage} />
             {/* If none of the other routes matched, we will show a 404. */}
             <ProtectedRoute exact path='/NewSurvey' component={NewSurvey}/>
+            <ProtectedRoute exact path='/AccordionView' component={AccordionView}/>
             <Route render={() => <h1>404</h1>} />
           </Switch>
 
