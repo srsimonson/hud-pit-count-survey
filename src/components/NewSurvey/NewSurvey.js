@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './NewSurvey.css';
+// import bulmaCollapsible from '@creativebulma/bulma-collapsible';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Accordion, Card} from 'react-bootstrap';
+
 
 class NewSurvey extends Component {
 
@@ -15,7 +19,7 @@ class NewSurvey extends Component {
     })
     this.setState({
       user_id: this.props.reduxStore.user.id
-    })    
+    })
   }
 
   handleChange = (event) => {
@@ -39,15 +43,14 @@ class NewSurvey extends Component {
 
     const question = this.props.reduxStore.loadSurvey
     return (
+      <>
         <div>
           <h1>New Survey</h1>
           {/* <p>{JSON.stringify(question)}</p> */}
           {/* <p>{JSON.stringify(this.props.reduxStore)}</p> */}
-          <ul className="accordion" data-accordion>
+          <ul>
             {question.map(item =>
-              <li key={item.id} className="accordion-item is-active" data-accordion-item>
-                <a href="#" class="accordion-title">Accordion 1</a>
-                <div class="accordion-content" data-tab-content ></div>
+              <li key={item.id}>
                 {item.question_text}
               { item.response_type !== 'dropdown' 
               ? 
@@ -65,6 +68,29 @@ class NewSurvey extends Component {
           <button onClick={this.save}>SAVE</button>
           <p>{this.props.reduxStore.loadSurvey[7] && JSON.stringify(this.props.reduxStore.loadSurvey[7].test)}</p>
         </div>
+
+        <Accordion defaultActiveKey="0">
+          <Card>
+        <Accordion.Toggle as={Card.Header} eventKey="0">
+      Click me!
+    </Accordion.Toggle>
+    <Accordion.Collapse eventKey="0">
+      <Card.Body><button>hi</button></Card.Body>
+    </Accordion.Collapse>
+  </Card>
+  <Card>
+    <Accordion.Toggle as={Card.Header} eventKey="1">
+      Click me!
+    </Accordion.Toggle>
+    <Accordion.Collapse eventKey="1">
+      <Card.Body>Hello! I'm another body</Card.Body>
+    </Accordion.Collapse>
+  </Card>
+</Accordion>
+
+
+
+</>
     );
   }
 }
