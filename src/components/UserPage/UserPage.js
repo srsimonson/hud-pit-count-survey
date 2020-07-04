@@ -10,8 +10,10 @@ import NewSurvey from '../LoadSurveys/LoadSurveys';
 const UserPage = (props) => (
   <div>
     <h1 id="welcome">
+      Change to HomePage.js?
       Welcome, { props.user.username }!
     </h1>
+    <p>Thank you for volunteering for the annual HUD Point-In-Time Count! Your support helps tell the story of our local housing crisis. Comprehensive and accurate collection of homeless data ensures the appropriate allocation of funding and informs the creation of programs most suited to the needs of our homeless population.</p>
     <p>Your ID is: {props.user.id}</p>
     <NewSurvey/>
     <LogOutButton className="log-in" />

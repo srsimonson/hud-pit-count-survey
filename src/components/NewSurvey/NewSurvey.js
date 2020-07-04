@@ -17,6 +17,7 @@ class NewSurvey extends Component {
       type: 'FETCH_NEW_SURVEY'
     })
     this.setState({
+      // counter: 0, ??????
       user_id: this.props.reduxStore.user.id
     })
   }

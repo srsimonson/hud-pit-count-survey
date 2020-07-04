@@ -13,6 +13,7 @@ class AccordionView extends Component {
   state = {
     user_id: this.props.reduxStore.user.id,
     surveyAnswer: '',
+    test:''
   }
 
   componentDidMount = () => {
@@ -40,7 +41,7 @@ class AccordionView extends Component {
 
   render() {
     console.log('asdf this.state', this.state);
-    console.log('this.props.reduxStore.loadSurvey', this.props.reduxStore.loadSurvey);
+    console.log('this.props.reduxStore:', this.props.reduxStore);
     
 
     const question = this.props.reduxStore.loadSurvey
