@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './NewSurvey.scss';
 
+let counter = 1;
+
 class NewSurvey extends Component {
 
   state = {
@@ -32,18 +34,33 @@ class NewSurvey extends Component {
     });
   }
 
-  render() {
-    console.log('asdf this.state', this.state);
-    console.log('this.props.reduxStore.loadSurvey', this.props.reduxStore.loadSurvey);
+  plus = () => {
+    counter ++;
+    console.log('counter:', counter);
     
+  }
 
+  minus = () => {
+    counter --;
+    console.log('counter:', counter);
+  }
+
+  render() {
     const question = this.props.reduxStore.loadSurvey
+    
+    console.log('Q U E S T I O N:',  question[6] && question[6].question_text );
+
     return (
       <>
         <div>
           <h1>New Survey</h1>
-          {/* <p>{JSON.stringify(question)}</p> */}
-          {/* <p>{JSON.stringify(this.props.reduxStore)}</p> */}
+          {/* <li>{(this.props.reduxStore.loadSurvey[2].question_text)}</li> */}
+          <p>
+            {question[counter] && question[counter].question_text} {question[counter] && question[counter].response_type} 
+            <br/>
+            <button className="button" onClick={this.minus}>Minus</button>
+            <button className="button" onClick={this.plus}>Plus</button >
+          </p>
           <ul>
             {question.map(item =>
               <li key={item.id}>
@@ -60,9 +77,9 @@ class NewSurvey extends Component {
                }
               </li>)}
           </ul>
-          <button>BACK</button>
-          <button onClick={this.save}>SAVE</button>
-          <p>{this.props.reduxStore.loadSurvey[7] && JSON.stringify(this.props.reduxStore.loadSurvey[7].test)}</p>
+          <button className="button" >BACK</button>
+          <button className="button" onClick={this.save}>SAVE</button>
+          {/* <p>{this.props.reduxStore.loadSurvey[7] && JSON.stringify(this.props.reduxStore.loadSurvey[7].test)}</p> */}
         </div>
 </>
     );

@@ -62,7 +62,7 @@ class InfoPage extends Component {
 
               {/* update button */}
               <td>
-                <button onClick=
+                <button className="button" onClick=
                 {() => this.props.dispatch({ 
                   type: 'UPDATE_ANSWER', 
                   payload: item.survey_id
@@ -71,7 +71,7 @@ class InfoPage extends Component {
 
               {/* delete button */}
               <td>
-                <button onClick=
+                <button className="button" onClick=
                 {() => this.props.dispatch({ 
                   type: 'DELETE_ANSWER', 
                   payload: item.survey_id

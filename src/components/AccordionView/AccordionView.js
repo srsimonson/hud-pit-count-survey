@@ -52,12 +52,24 @@ class AccordionView extends Component {
           return (
             <AccordionItem title={item.question_header} expanded={item === 1} className="closed">
               <div className="open">
-                {item.question_text} {item.response_type}
+                {item.question_text}
+                {item.response_type !== 'dropdown' 
+              ? 
+                <input type={item.response_type} onChange={this.handleChange}></input> 
+              :
+               <select onChange={this.handleChange}>
+                 <option disabled selected value>Choose</option>
+                 <option value='test_one'>TEST 1</option>
+                 <option value='test_two'>TEST 2</option>
+               </select> 
+               }
               </div>
             </AccordionItem>
           );
         })}
       </Accordion>
+      <button className="button">BACK</button>
+      <button className="button" onClick={this.save}>SAVE</button>
 {/* 
         <Accordion defaultActiveKey="0">
 

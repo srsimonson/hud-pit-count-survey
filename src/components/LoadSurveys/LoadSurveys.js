@@ -1,37 +1,33 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import NewSurvey from '../NewSurvey/NewSurvey';
+// import NewSurvey from '../NewSurvey/NewSurvey';
 import { withRouter } from "react-router-dom";
 
 
 class LoadSurveys extends Component {
-
-// LoadSurveys = props => (
-//   <div>
-//     <button
-//       onClick={ ()=> props.dispatch ({ type: 'FETCH_NEW_SURVEY'})
-//       }>Start New Survey</button>
-//     <button>View Completed Surveys</button>
-//     <button onClick={ () => props.history.push('/NewSurvey')}>TEST</button>
-//   </div>
-// );
 
 startNewSurvey = () => {
   this.props.dispatch ({ type: 'FETCH_NEW_SURVEY'});
   this.props.history.push('/NewSurvey')
 }
 
+accordionNewSurvey = () => {
+  this.props.dispatch ({ type: 'FETCH_NEW_SURVEY'});
+  this.props.history.push('/AccordionView')
+}
+
 viewCompletedSurveys = () => {
   this.props.dispatch ({ type: 'FETCH_ALL_SURVEYS'});
-  console.log('in viewCompletedSurveys');
-  
 }
 
 render () {
   return (
     <div>
-    <button onClick={ this.startNewSurvey }>Start New Survey</button>
-    <button onClick={ this.viewCompletedSurveys }>View Completed Surveys</button>
+    <button className="button" onClick={ this.startNewSurvey }>Start New Survey</button>
+    <br/>
+    <button className="button" onClick={ this.accordionNewSurvey }>AccordionView New Survey</button>
+    <br/>
+    <button className="button" onClick={ this.viewCompletedSurveys }>View Completed Surveys</button>
   </div>
   )
 }

@@ -1,9 +1,11 @@
 .closed {
     background-color: rgb(219, 219, 219);
-    border: white;
-    border-color: honeydew;
-    border-width: thick;
+    margin: 10px;
+    font-size: 25px;
 }
+
+.closed:hover {
+    background-color: rgb(252, 221, 255);}
 
 .open {
     background-color: white;
