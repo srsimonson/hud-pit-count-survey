@@ -2,14 +2,47 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './NewSurvey.scss';
 
-let counter = 1;
+let counter = 0;
 
 class NewSurvey extends Component {
 
   state = {
     counter: 0,
     user_id: this.props.reduxStore.user.id,
-    surveyAnswer: '',
+    surveyAnswer: '', // remove
+    resource_id: '', // needed? remove?
+    survey_q1: '',
+    survey_q2: '', 
+    survey_q3: '',
+    survey_q4: '',
+    survey_q5: '',
+    survey_q6: '',
+    survey_q7: '',
+    survey_q8: '',
+    survey_q9: '',
+    survey_q10: '',
+    survey_q11: '',
+    survey_q12: '',
+    survey_q13: '',
+    survey_q14: '',
+    survey_q15: '',
+    survey_q16: '',
+    survey_q17: '',
+    survey_q18: '',
+    survey_q19: '',
+    survey_q20: '',
+    survey_q21: '',
+    survey_q22: '',
+    survey_q23: '',
+    survey_q24: '',
+    survey_q25: '',
+    survey_q26: '',
+    survey_q27: '',
+    survey_q28: '',
+    survey_q29: '',
+    survey_q30: '',
+    survey_q31: '',
+    survey_q32: '',
   }
 
   componentDidMount = () => {
@@ -40,25 +73,29 @@ class NewSurvey extends Component {
     this.setState({
       counter: counter++
     })
-    console.log('counter:', this.state);
+    console.log('this.state:', this.state);
   }
 
   minus = () => {
     this.setState({
       counter: counter--
     })
-    console.log('counter:', this.state);
+    // console.log('counter:', this.state);
   }
 
   render() {
     const question = this.props.reduxStore.loadSurvey
     
-    console.log('Q U E S T I O N:',  question[6] && question[6].question_text );
+    // console.log('Q U E S T I O N:',  question[6] && question[6].question_text );
 
     return (
       <>
         <div>
           <h1>New Survey</h1>
+          {/* <div class="progress" role="progressbar" tabindex="0" aria-valuenow="50" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
+            <div class="progress-meter" style="width: 50%"></div>
+          </div> */}
+
           {/* <li>{(this.props.reduxStore.loadSurvey[2].question_text)}</li> */}
           <p>
             {question[counter] && question[counter].question_text} {question[counter] && question[counter].response_type} 
