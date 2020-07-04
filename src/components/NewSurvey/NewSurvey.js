@@ -7,6 +7,7 @@ let counter = 1;
 class NewSurvey extends Component {
 
   state = {
+    counter: 0,
     user_id: this.props.reduxStore.user.id,
     surveyAnswer: '',
   }
@@ -35,14 +36,17 @@ class NewSurvey extends Component {
   }
 
   plus = () => {
-    counter ++;
-    console.log('counter:', counter);
-    
+    this.setState({
+      counter: counter++
+    })
+    console.log('counter:', this.state);
   }
 
   minus = () => {
-    counter --;
-    console.log('counter:', counter);
+    this.setState({
+      counter: counter--
+    })
+    console.log('counter:', this.state);
   }
 
   render() {
