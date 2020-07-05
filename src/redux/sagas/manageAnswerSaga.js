@@ -25,6 +25,7 @@ function* deleteAnswer(action) {
     try {
         const elementsResponse = yield axios.delete(`api/survey/${action.payload}`)
         yield put ({ type: 'REMOVE_ANSWER' });
+        yield put ({ type: 'FETCH_ALL_SURVEYS' });
     }
         catch (error) {
             console.log('ERROR from deleteAnswer in saveAnswerSaga');
