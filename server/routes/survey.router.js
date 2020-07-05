@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
     let surveyAnswer = req.body.surveyAnswer;
     console.log('req.body:', req.body);
     
-    let sqlText = `INSERT INTO survey (user_id, survey_location)
+    let sqlText = `INSERT INTO survey (user_id, survey_q1)
     VALUES ($1, $2);`;
     pool.query(sqlText, [user_id, surveyAnswer])
     .then(result => {

@@ -56,7 +56,7 @@ class NewSurvey extends Component {
   }
 
   handleChange = (event) => {
-    console.log('hi', event.target.value);
+    console.log('NEW SURVEY, event.target.value:', event.target.value);
     this.setState({
       surveyAnswer: event.target.value
     })
@@ -73,17 +73,19 @@ class NewSurvey extends Component {
     this.setState({
       counter: counter++
     })
-    console.log('this.state:', this.state);
+    // console.log('plus:', this.state);
   }
 
   minus = () => {
     this.setState({
       counter: counter--
     })
-    // console.log('counter:', this.state);
+    // console.log('minus:', this.state);
   }
 
   render() {
+    // console.log('asdf this.state', this.state);
+    // console.log('this.props.reduxStore:', this.props.reduxStore);
     const question = this.props.reduxStore.loadSurvey
     
     // console.log('Q U E S T I O N:',  question[6] && question[6].question_text );
@@ -98,12 +100,25 @@ class NewSurvey extends Component {
 
           {/* <li>{(this.props.reduxStore.loadSurvey[2].question_text)}</li> */}
           <p>
-            {question[counter] && question[counter].question_text} {question[counter] && question[counter].response_type} 
+            {question[counter] && question[counter].question_text} 
+            {/* {question[counter] && question[counter].response_type}  */}
+            {question[counter] && question[counter].response_type !== 'dropdown' 
+              ? 
+                <input type={question[counter] && question[counter].response_type} onChange={this.handleChange}></input> 
+              :
+               <select onChange={this.handleChange}>
+                 <option disabled selected value>Choose</option>
+                 <option value='test_one'>TEST 1</option>
+                 <option value='test_two'>TEST 2</option>
+               </select> 
+               }
+
+
             <br/>
             <button className="button" onClick={this.minus}>Minus</button>
             <button className="button" onClick={this.plus}>Plus</button >
           </p>
-          <ul>
+          {/* <ul>
             {question.map(item =>
               <li key={item.id}>
                 {item.question_text}
@@ -118,7 +133,8 @@ class NewSurvey extends Component {
                </select> 
                }
               </li>)}
-          </ul>
+          </ul> */}
+
           <button className="button" >BACK</button>
           <button className="button" onClick={this.save}>SAVE</button>
           {/* <p>{this.props.reduxStore.loadSurvey[7] && JSON.stringify(this.props.reduxStore.loadSurvey[7].test)}</p> */}
