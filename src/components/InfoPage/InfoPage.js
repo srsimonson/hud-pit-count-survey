@@ -8,7 +8,7 @@ class InfoPage extends Component {
   }
 
   update = () => {
-    console.log('hi');
+    console.log('update clicked');
     
   }
 
@@ -56,31 +56,28 @@ class InfoPage extends Component {
               <td>{item.survey_id}</td>
               <td>{item.user_id}</td>
               <td>
-                <input placeholder = {item.survey_location}></input>
-                {/* {item.survey_location} */}
+                {/* <input placeholder = {item.survey_location}></input> */}
+                {item.survey_q1}
               </td>
-
-              {/* update button */}
-              <td>
-                <button className="button" onClick=
-                {() => this.props.dispatch({ 
-                  type: 'UPDATE_ANSWER', 
-                  payload: item.survey_id
-                })}>UPDATE</button>
+              <td>{item.survey_q2}</td>
+              <td>{item.survey_q3}</td>
+              <td>{item.survey_q4}</td>
+              <td>{item.survey_q5}</td>
+              <td>{item.survey_q6}</td>
+              <td>{item.survey_q7}</td>
+              <td>{item.survey_q8}</td>
+              <td>{item.survey_q9}</td>
+              <td>{item.survey_q10}</td>
+              <td>{/* update button */}
+                <button className="button" onClick={ () => this.props.dispatch({ type: 'UPDATE_ANSWER', payload: item.survey_id })}>UPDATE</button>
               </td>
-
-              {/* delete button */}
-              <td>
-                <button className="button" onClick=
-                {() => this.props.dispatch({ 
-                  type: 'DELETE_ANSWER', 
-                  payload: item.survey_id
-                })}>DELETE</button>
+              <td> {/* delete button */}
+                <button className="button" onClick={ () => this.props.dispatch({ type: 'DELETE_ANSWER', payload: item.survey_id}) }>DELETE</button>
               </td>
             </tr>
             )}
         </table>
-        <p>{JSON.stringify(surveyResponse)}</p>
+        {/* <p>{JSON.stringify(surveyResponse)}</p> */}
       </div>
     );
   }
