@@ -78,11 +78,11 @@ class AccordionView extends Component {
     const question = this.props.reduxStore.loadSurvey
     return (
       <>
-      <h1>Outline View</h1>
+      <h1>HUD Point-In-Time Count</h1>
       <Accordion allowMultiple={true}>
         {question.map(item => {
           return (
-            <AccordionItem title={'Question ' + item.question_id + ':   ' + item.question_header } expanded={item === 1} className="closed">
+            <AccordionItem title={'Question ' + item.question_id + ': ' + item.question_header } expanded={item === 1} className="closed">
               <div className="open">
                 {item.question_text}
                 {item.response_type !== 'dropdown' 

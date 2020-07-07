@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './NewSurvey.scss';
-import { Input } from 'react-advanced-form-addons'
-
-let x = 1;
 
 class NewSurvey extends Component {
 
