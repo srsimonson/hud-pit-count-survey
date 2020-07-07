@@ -1,13 +1,26 @@
+
+@import 'src/index.scss';
+
 .closed {
-    background-color: rgb(219, 219, 219);
+    background-color: rgb(236, 236, 236);
     margin: 10px;
     font-size: 25px;
+    border-radius: 5px;
 }
 
 .closed:hover {
-    background-color: rgb(252, 221, 255);}
+    background-color: rgb(255, 255, 255);}
 
 .open {
     background-color: white;
     color: black;
+}
+
+.react-sanfona-item {
+    color: $blue;
+    font-family: $font-family;
+}
+
+.react-sanfona-item-expanded {
+    color: rgb(0, 0, 0);
 }

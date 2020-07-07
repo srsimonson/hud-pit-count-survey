@@ -9,6 +9,7 @@ import LoadSurveys from '../LoadSurveys/LoadSurveys';
 
 const WelcomePage = (props) => (
   <div className="container">
+    <div className="content">
     <h1 id="welcome">
       Welcome, { props.user.username }!
     </h1>
@@ -19,7 +20,8 @@ const WelcomePage = (props) => (
     <LoadSurveys/>
     
     {/* <NewSurvey/> */}
-    <LogOutButton className="log-in" />
+    {/* <LogOutButton className="log-in" /> */}
+  </div>
   </div>
 );
 
