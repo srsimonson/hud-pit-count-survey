@@ -23,7 +23,7 @@ class ResourcePage extends Component {
     this.setState({
       user_id: this.props.reduxStore.user.id
     })
-    console.log('hi', this.props.reduxStore.user.id);
+    console.log('hi', this.props.reduxStore.resourceReducer);
     
   }
 
@@ -47,6 +47,12 @@ class ResourcePage extends Component {
     return (
       <div>
         <h1>Resources</h1>
+        <ul>
+          {this.props.reduxStore.resourceReducer.map(item =>
+          <li key={item.id}>{item.resource_target} {item.resource_name} {item.resource_phone} {item.resource_location}</li>)}
+        </ul>
+
+
         <button className="button">UPDATE</button>
         <button className="button">SAVE</button>
       </div>
