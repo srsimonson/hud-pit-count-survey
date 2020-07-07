@@ -13,7 +13,7 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
-import AboutPage from '../AboutPage/AboutPage';
+import ResourcePage from '../ResourcePage/ResourcePage';
 import WelcomePage from '../WelcomePage/WelcomePage';
 import InfoPage from '../InfoPage/InfoPage';
 import NewSurvey from '../NewSurvey/NewSurvey';
@@ -36,7 +36,7 @@ class App extends Component {
             <Redirect exact from="/" to="/home" />
             {/* Visiting localhost:3000/about will show the about page.
             This is a route anyone can see, no login necessary */}
-            <Route exact path="/about" component={AboutPage} />
+            <Route exact path="/resource" component={ResourcePage} />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the WelcomePage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
