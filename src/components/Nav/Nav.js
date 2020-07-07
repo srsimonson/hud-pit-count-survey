@@ -26,7 +26,7 @@ const Nav = (props) => (
             AccordionView
           </Link>
           <Link className="nav-link" to="/info">
-            Admin / FKA Info
+            Data
           </Link>
         </>
       )}

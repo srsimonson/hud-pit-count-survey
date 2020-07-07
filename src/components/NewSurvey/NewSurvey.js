@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './NewSurvey.scss';
+import { Input } from 'react-advanced-form-addons'
 
-let counter = 0;
+let x = 1;
 
 class NewSurvey extends Component {
 
@@ -15,6 +16,7 @@ class NewSurvey extends Component {
   }
 
   componentDidMount = () => {
+    console.log('this.props.reduxStore', this.props.reduxStore);
     this.props.dispatch ({ 
       type: 'FETCH_NEW_SURVEY'
     }) 
@@ -25,7 +27,7 @@ class NewSurvey extends Component {
   }
 
   handleChange = (event, type) => {
-    console.log('NEW SURVEY, event.target.value:', event.target.value);
+    console.log('NEW SURVEY, event.target.value: XXXXXXX', event.target.value, type);
     console.log('this.props.reduxStore', this.props.reduxStore);
     
     this.setState({
@@ -36,86 +38,69 @@ class NewSurvey extends Component {
 
   save = () => {
     this.props.dispatch({ 
-      type: 'SAVE_ANSWER', 
+      type: 'SUBMIT_SURVEY', 
       payload: this.state
     });
     console.log('this.state:', this.state);    
   }
 
-  plus = () => {
+  next = () => {
+    this.props.dispatch({ 
+      type: 'SAVE_ANSWER', 
+      payload: this.state
+    });
     this.setState({
-      counter: counter++
+      counter: this.state.counter +1
     })
-    console.log('P L U S this.state:', this.state);
-    console.log('this.props.reduxStore.loadSurvey[counter].question_id', this.props.reduxStore.loadSurvey[counter].question_id);
+    // console.log('P L U S this.state:', this.state);
+    console.log('this.props.reduxStore.loadSurvey[counter].question_id', this.props.reduxStore.loadSurvey[this.state.counter].question_id);
+    if ( this.props.reduxStore.loadSurvey[this.state.counter].question_id === 3) {
+      console.log('123456');
+      
+    } 
   }
 
-  minus = () => {
+  back = () => {
     this.setState({
-      counter: counter--
+      counter: this.state.counter -1
     })
-    console.log('M I N U S this.state:', this.state);
-    console.log('this.props.reduxStore.loadSurvey[counter].question_id', this.props.reduxStore.loadSurvey[counter].question_id);
+    console.log('BACK this.state:', this.state);
+    console.log('this.props.reduxStore.loadSurvey[counter].question_id', this.props.reduxStore.loadSurvey[this.state.counter].question_id);
   }
 
   render() {
     // console.log('asdf this.state', this.state);
     // console.log('this.props.reduxStore:', this.props.reduxStore);
     const question = this.props.reduxStore.loadSurvey
-    
-    // console.log('Q U E S T I O N:',  question[6] && question[6].question_text );
-
+    // let progress = this.props.reduxStore.loadSurvey[this.state.counter].question_id
     return (
       <>
-        <div>
+        <div className="container">
+          <div className="content">
           <h1>New Survey</h1>
-          {/* <div class="progress" role="progressbar" tabindex="0" aria-valuenow="50" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
-            <div class="progress-meter" style="width: 50%"></div>
-          </div> */}
-
-          {/* <li>{(this.props.reduxStore.loadSurvey[2].question_text)}</li> */}
           <p>
-            {question[counter] && question[counter].question_text} 
-            {/* {question[counter] && question[counter].response_type}  */}
-            {question[counter] && question[counter].response_type !== 'dropdown' 
+            {question[this.state.counter] && question[this.state.counter].question_text} 
+            {question[this.state.counter] && question[this.state.counter].response_type !== 'dropdown' 
               ? 
-                <input type={question[counter] && question[counter].response_type} onChange={(event) => this.handleChange(event, `survey_q${counter+1}`)}></input> 
+                <input type={question[this.state.counter] && question[this.state.counter].response_type} onChange={(event) => this.handleChange(event, `survey_q${this.state.counter+1}`)}></input> 
               :
-               <select onChange={(event) => this.handleChange(event, `survey_q${counter}`)}>
+               <select onChange={(event) => this.handleChange(event, `survey_q${this.state.counter+1}`)}>
                  <option disabled selected value>Choose</option>
                  <option value='yes'>YES</option>
                  <option value='no'>NO</option>
                  <option value='dk/ref'>DON'T KNOW / REFUSED</option>
                </select> 
                }
-
-
             <br/>
-            <button className="button" onClick={this.minus}>Minus</button>
-            <button className="button" onClick={this.plus}>Plus</button >
+            <button className="button" onClick={this.back}>Back</button>
+            <button className="button" onClick={this.next}>Next</button >
+            <button className="button" onClick={this.save}>SAVE</button>
           </p>
-          {/* <ul>
-            {question.map(item =>
-              <li key={item.id}>
-                {item.question_text}
-                {item.response_type !== 'dropdown' 
-              ? 
-                <input type={item.response_type} onChange={this.handleChange}></input> 
-              :
-               <select onChange={this.handleChange}>
-                 <option disabled selected value>Choose</option>
-                 <option value='test_one'>TEST 1</option>
-                 <option value='test_two'>TEST 2</option>
-               </select> 
-               }
-              </li>)}
-          </ul> */}
 
-          <button className="button" >BACK</button>
-          <button className="button" onClick={this.save}>SAVE</button>
           {/* <p>{this.props.reduxStore.loadSurvey[7] && JSON.stringify(this.props.reduxStore.loadSurvey[7].test)}</p> */}
+          </div>
         </div>
-</>
+      </>
     );
   }
 }

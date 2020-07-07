@@ -82,7 +82,8 @@ router.post('/', (req, res) => {
     req.body.survey_q32,
     ])
     .then(result => {
-        res.send(result.rows);
+        // res.send(result.rows);
+        res.sendStatus(200)
     })
 });
 

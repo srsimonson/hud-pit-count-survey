@@ -8,7 +8,7 @@ import LoadSurveys from '../LoadSurveys/LoadSurveys';
 // and then instead of `props.user.username` you could use `user.username`
 
 const WelcomePage = (props) => (
-  <div>
+  <div className="container">
     <h1 id="welcome">
       Welcome, { props.user.username }!
     </h1>
