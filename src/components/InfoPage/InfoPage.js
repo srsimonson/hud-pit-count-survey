@@ -31,6 +31,7 @@ class InfoPage extends Component {
             </li>
           ))}
         </ul> */}
+        
         <table>
         <thead>
           <tr>

@@ -14,6 +14,7 @@ class ResourcePage extends Component {
     user_id: this.props.reduxStore.user.id,
     surveyAnswer: '', // remove
     resource_id: '', // needed? remove?
+    toggleValue: true
   }
 
   componentDidMount = () => {
@@ -25,6 +26,13 @@ class ResourcePage extends Component {
     })
     console.log('hi', this.props.reduxStore.resourceReducer);
     
+  }
+
+  toggle = () => {
+    this.setState({
+      toggleValue: !this.state.toggleValue
+    })
+    console.log('toggle value:', this.state.toggleValue);
   }
 
   // handleChange = (event) => {
@@ -49,11 +57,13 @@ class ResourcePage extends Component {
         <h1>Resources</h1>
         <ul>
           {this.props.reduxStore.resourceReducer.map(item =>
-          <li key={item.id}>{item.resource_target} {item.resource_name} {item.resource_phone} {item.resource_location}</li>)}
+          <li key={item.id}>{item.resource_target} {item.resource_name} {item.resource_phone} {item.resource_location}        
+          <button className="button" onClick={this.toggle}>UPDATE</button></li>)}
         </ul>
+        {this.state.toggleValue === true ? <h1>true</h1> : <h1>false</h1>}
 
 
-        <button className="button">UPDATE</button>
+
         <button className="button">SAVE</button>
       </div>
     );
