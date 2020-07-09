@@ -24,13 +24,11 @@ class NewSurvey extends Component {
   }
 
   handleChange = (event, type) => {
-    console.log('NEW SURVEY, event.target.value: XXXXXXX', event.target.value, type);
-    console.log('this.props.reduxStore', this.props.reduxStore);
-    
+    // console.log('NEW SURVEY, event.target.value: XXXXXXX', event.target.value, type);
+    // console.log('this.props.reduxStore', this.props.reduxStore);
     this.setState({
       ...this.state,
       [type]: event.target.value,
-      // question_number: `survey_q${this.state.counter-1}`
     })
   }
 
@@ -45,7 +43,7 @@ class NewSurvey extends Component {
   next = () => {
     this.props.dispatch({ 
       type: 'SET_ANSWER', // was save answer 
-      payload: this.state // was this.state 
+      payload: this.state
     });
     // this.setState({
     //   [this.state.question_number]: ''
@@ -53,7 +51,7 @@ class NewSurvey extends Component {
     this.setState({
       counter: this.state.counter +1
     })
-    this.refs.reftest.value = ''
+    this.refs.clear.value = ''
     // console.log('P L U S this.state:', this.state);
     console.log('this.props.reduxStore.loadSurvey[counter].question_id', this.props.reduxStore.loadSurvey[this.state.counter].question_id);
     if ( this.props.reduxStore.loadSurvey[this.state.counter].question_id === 3) {
@@ -88,9 +86,9 @@ class NewSurvey extends Component {
             {question && question.question_text} 
             {question && question.response_type !== 'dropdown' 
               ? 
-                <input ref="reftest" type={question && question.response_type} onChange={(event) => this.handleChange(event, `survey_q${this.state.counter+1}`)}></input> 
+                <input ref="clear" type={question && question.response_type} onChange={(event) => this.handleChange(event, `survey_q${this.state.counter+1}`)}></input> 
               :
-               <select ref="reftest" onChange={(event) => this.handleChange(event, `survey_q${this.state.counter+1}`)}>
+               <select ref="clear" onChange={(event) => this.handleChange(event, `survey_q${this.state.counter+1}`)}>
                  <option value="" disabled selected value>Choose</option>
                  <option value='yes'>YES</option>
                  <option value='no'>NO</option>

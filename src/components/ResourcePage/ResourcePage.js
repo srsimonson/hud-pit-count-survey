@@ -37,7 +37,8 @@ class ResourcePage extends Component {
         id: this.state.resource_id
       }
     });
-    this.setState({ toggleValue: 0 })
+    this.props.dispatch ({ type: 'FETCH_RESOURCES' })
+    this.setState({ toggleValue: 0 });
   }
 
   render() {

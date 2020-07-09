@@ -22,8 +22,9 @@ function* displayResources() {
 function* updateResource ( action ) {
     console.log('in updateResource:', action.payload);
     try {
-        const elementsResponse = yield axios.put(`/api/resource/${action.payload.resource_id}`, action.payload)
-        yield put ({ type: 'SET_RESOURCE', payload: elementsResponse.data }) 
+        yield axios.put(`/api/resource/${action.payload.id}`, action.payload)
+        // yield put ({ type: 'SET_RESOURCE', payload: elementsResponse.data })
+        yield put ({ type: 'FETCH_RESOURCES' }) 
     } catch (error) {
         console.log('ERROR from updateResource in resourceSaga.js', error);
     }

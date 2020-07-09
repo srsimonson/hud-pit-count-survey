@@ -88,10 +88,9 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    let id = req.params.id
+    console.log('req.params', req.params);
     let sqlText = `DELETE FROM survey WHERE survey_id = $1;`;
-    console.log('req.params.id', id);
-    pool.query(sqlText, [id])
+    pool.query(sqlText, [req.params.id])
     .then((result) => {
         console.log('result:', result.rows);
         res.sendStatus(200);
