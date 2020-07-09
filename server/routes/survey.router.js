@@ -16,7 +16,18 @@ router.get('/', (req, res) => {
     // JOIN response ON question.question_id = response.question_id
     // ORDER BY question.question_id ASC;`;
 
-    let sqlText = `SELECT * FROM question ORDER BY question.question_id ASC;`;
+    // SELECT question.question_id, question.question_text, question.response_type, json_agg(response.description) AS dropdown_option FROM question
+    // JOIN response ON question.question_id = response.question_id
+    // GROUP BY question.question_id
+    // ORDER BY question.question_id ASC;
+
+// let sqlText = `SELECT * FROM question ORDER BY question.question_id ASC;`;
+
+    let sqlText = `SELECT question.question_id, question.question_text, question.response_type, json_agg(response.description) 
+    AS dropdown_option FROM question
+    JOIN response ON question.question_id = response.question_id
+    GROUP BY question.question_id
+    ORDER BY question.question_id ASC;`;
     pool.query(sqlText)
     .then(result => {
         res.send(result.rows);

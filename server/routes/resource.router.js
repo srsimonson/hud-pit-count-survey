@@ -7,7 +7,7 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
     let sqlText = `SELECT * FROM resource
-    ORDER BY resource_target ASC;`;
+    ORDER BY resource_name ASC;`;
     pool.query(sqlText)
     .then(result => {
         res.send(result.rows);

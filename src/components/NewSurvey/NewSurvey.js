@@ -54,7 +54,7 @@ class NewSurvey extends Component {
     this.refs.clear.value = ''
     // console.log('P L U S this.state:', this.state);
     console.log('this.props.reduxStore.loadSurvey[counter].question_id', this.props.reduxStore.loadSurvey[this.state.counter].question_id);
-    if ( this.props.reduxStore.loadSurvey[this.state.counter].question_id === 3) {
+    if ( this.props.reduxStore.loadSurvey[this.state.counter].question_id === 24) {
       console.log('123456');
       
     } 
@@ -69,13 +69,9 @@ class NewSurvey extends Component {
   }
 
   render() {
-    // console.log('asdf this.state', this.state);
-    // console.log('this.props.reduxStore:', this.props.reduxStore);
     const question = this.props.reduxStore.loadSurvey[this.state.counter]
     console.log('redux state:', this.props.reduxStore);
-    console.log('this.stateXXXXX:', this.state);
-    
-    
+    // console.log('this.stateXXXXX:', this.state);
     // let progress = this.props.reduxStore.loadSurvey[this.state.counter].question_id
     return (
       <>
@@ -88,20 +84,29 @@ class NewSurvey extends Component {
               ? 
                 <input ref="clear" type={question && question.response_type} onChange={(event) => this.handleChange(event, `survey_q${this.state.counter+1}`)}></input> 
               :
-               <select ref="clear" onChange={(event) => this.handleChange(event, `survey_q${this.state.counter+1}`)}>
-                 <option value="" disabled selected value>Choose</option>
-                 <option value='yes'>YES</option>
-                 <option value='no'>NO</option>
-                 <option value='dk/ref'>DON'T KNOW / REFUSED</option>
-               </select> 
+              //  <select ref="clear" onChange={(event) => this.handleChange(event, `survey_q${this.state.counter+1}`)}>
+              //    <option value="" disabled selected value>Choose</option>
+              //    <option value='yes'>YES</option>
+              //    <option value='no'>NO</option>
+              //    <option value='dk/ref'>DON'T KNOW / REFUSED</option>
+              //  </select>
+
+              <select ref="clear" onChange={(event) => this.handleChange(event, `survey_q${this.state.counter+1}`)}>
+                  <option value="" disabled selected value>Choose</option>
+                  <option value={question && question.dropdown_option[0]}>{question && question.dropdown_option[0]}</option>
+                  <option value={question && question.dropdown_option[1]}>{question && question.dropdown_option[1]}</option>
+               </select>
+
+
                }
             <br/>
             <button className="button" onClick={this.back}>Back</button>
             <button className="button" onClick={this.next}>Next</button >
             <button className="button" onClick={this.save}>SAVE</button>
           </p>
+          <p>{question && JSON.stringify(question.dropdown_option[0])}</p>
 
-          {/* <p>{this.props.reduxStore.loadSurvey[7] && JSON.stringify(this.props.reduxStore.loadSurvey[7].test)}</p> */}
+          <p>{this.props.reduxStore.loadSurvey[7] && JSON.stringify(this.props.reduxStore.loadSurvey[7].test)}</p>
           </div>
         </div>
       </>
