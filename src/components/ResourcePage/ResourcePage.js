@@ -26,31 +26,24 @@ class ResourcePage extends Component {
     
   }
 
-  // save = () => {
-  //   this.props.dispatch({ 
-  //     type: 'SAVE_ANSWER', 
-  //     payload: this.state
-  //   });
-  // }
-
-  // toggle = () => {
-  //   this.setState({
-  //     toggleValue: !this.state.toggleValue
-  //   })
-  //   console.log('toggle:', this.state.toggleValue);
-    
-  // }
+  updateResource = () => {
+    this.props.dispatch({ 
+      type: 'UPDATE_RESOURCE',
+      payload: {
+        resource_name: this.state.resource_name,
+        resource_phone: this.state.resource_phone,
+        resource_location: this.state.resource_location,
+        resource_target: this.state.resource_target,
+        id: this.state.resource_id
+      }
+    });
+    this.setState({ toggleValue: 0 })
+  }
 
   render() {
     return (
       <div>
         <h1>Resources</h1>
-        {/* <ul>
-          {this.props.reduxStore.resourceReducer.map(item =>
-          <li key={item.id}>{item.resource_target} {item.resource_name} {item.resource_phone} {item.resource_location}        
-          <button className="button" onClick={this.toggle}>UPDATE</button></li>)}
-        </ul> */}
-
         <ul> {/* Display List of Info */}
           {this.props.reduxStore.resourceReducer.map(item =>
             <li key={item.id}>
@@ -62,21 +55,21 @@ class ResourcePage extends Component {
                     <p>{item.resource_phone}</p> 
                     <p>{item.resource_location}</p>
                     <p>Population Served: {item.resource_target}</p>
-                    <button className="button" onClick={ () => {       
-                      this.setState({ toggleValue: item.resource_id, resource_id: item.resource_id }) 
-                      console.log('update');
+                    <button className="button" onClick={ () => { this.setState({ toggleValue: item.resource_id, resource_id: item.resource_id });
                     }}>UPDATE</button> 
                   </div>
                 :
                   <div>
-                    <p>Agency: <input name="resource_name" placeholder={item.resource_name} onChange={this.handleChange}></input></p>
-                    <p>Phone: <input name="resource_phone"  placeholder={item.resource_phone} onChange={this.handleChange}></input></p>
-                    <p>Address: <input name="resource_location" placeholder={item.resource_location} onChange={this.handleChange}></input></p>
-                    <p>Population Served: <input name="resource_target" placeholder={item.resource_target} onChange={this.handleChange}></input></p>
-                    <button className="button" onClick={ () => {       
-                      this.setState({ toggleValue: 0 }) 
-                      console.log('save:', this.state);
-                    }}>SAVE</button> 
+                    <label>Agency:</label> <input name="resource_name" placeholder={item.resource_name} onChange={this.handleChange}></input>
+                    <label>Phone:</label> <input name="resource_phone"  placeholder={item.resource_phone} onChange={this.handleChange}></input>
+                    <label>Address:</label> <input name="resource_location" placeholder={item.resource_location} onChange={this.handleChange}></input>
+                    <label>Population Served:</label> <input name="resource_target" placeholder={item.resource_target} onChange={this.handleChange}></input>
+                    <button className="success button" onClick={this.updateResource}>SAVE</button>
+                      
+                       {/* () => {        
+                       this.setState({ toggleValue: 0 }) 
+                       console.log('save:', this.state);
+                     }}>SAVE</button>  */}
                   </div>
               }         
             </li>)}

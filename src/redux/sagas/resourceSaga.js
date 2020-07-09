@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function* resourceSaga() {
     yield takeLatest('FETCH_RESOURCES', displayResources)
-    // yield takeLatest('UPDATE_RESOURCES', updateResources)
+    yield takeLatest('UPDATE_RESOURCE', updateResource)
 }
 
 function* displayResources() {
@@ -19,7 +19,17 @@ function* displayResources() {
     }
 }
 
-// function* updateMovies (action) {
+function* updateResource ( action ) {
+    console.log('in updateResource:', action.payload);
+    try {
+        const elementsResponse = yield axios.put(`/api/resource/${action.payload.resource_id}`, action.payload)
+        yield put ({ type: 'SET_RESOURCE', payload: elementsResponse.data }) 
+    } catch (error) {
+        console.log('ERROR from updateResource in resourceSaga.js', error);
+    }
+}
+
+// function* updateResource (action) {
 //     console.log('in updateResources', action.payload.title);
     
 //     try {
