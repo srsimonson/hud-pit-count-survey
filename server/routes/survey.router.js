@@ -39,7 +39,13 @@ router.get('/', (req, res) => {
 });
 
 router.get('/all', (req, res) => {
-    let sqlText = `SELECT * FROM survey;`;
+    let sqlText = (req.user.admin === true) ? 
+    `SELECT * FROM "user"
+    JOIN survey ON "user".id=survey.user_id;`
+    :
+     `SELECT * FROM "user"
+    JOIN survey ON "user".id=survey.user_id
+    WHERE "user_id"=${req.user.id};`;
     pool.query(sqlText)
     .then(result => {
         res.send(result.rows);
