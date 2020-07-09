@@ -4,27 +4,27 @@ import { connect } from 'react-redux';
 class ResourcePage extends Component {
 
   state = {
-    user_id: this.props.reduxStore.user.id,
-    surveyAnswer: '', // remove
-    resource_id: '', // needed? remove?
-    toggleValue: 0
+    toggleValue: 0,
+    resource_id: '',
+    resource_name: '',
+    resource_phone: '',
+    resource_location: '',
+    resource_target: ''
   }
 
   componentDidMount = () => {
-    this.props.dispatch ({ 
-      type: 'FETCH_RESOURCES'
-    })
-    this.setState({
-      user_id: this.props.reduxStore.user.id
-    })
+    this.props.dispatch ({ type: 'FETCH_RESOURCES' })
   }
 
-  // handleChange = (event) => {
-  //   console.log('AccordionView event.target.value', event.target.value);
-  //   this.setState({
-  //     surveyAnswer: event.target.value
-  //   })
-  // }
+  handleChange = (event) => {
+    console.log('event.target.value', event.target.value);
+    this.setState({
+      ...this.state, // what does this do? works both with and without this.
+      [event.target.name]: event.target.value
+    });
+    console.log('this.state', this.state);
+    
+  }
 
   // save = () => {
   //   this.props.dispatch({ 
@@ -55,26 +55,27 @@ class ResourcePage extends Component {
           {this.props.reduxStore.resourceReducer.map(item =>
             <li key={item.id}>
               {
-                this.state.toggleValue !== item.resource_id ? 
+                this.state.toggleValue !== item.resource_id 
+                ? 
                   <div>
                     <h2>{item.resource_name}</h2> 
                     <p>{item.resource_phone}</p> 
                     <p>{item.resource_location}</p>
-                    <p>Population Serves: {item.resource_target}</p>
+                    <p>Population Served: {item.resource_target}</p>
                     <button className="button" onClick={ () => {       
-                      this.setState({ toggleValue: item.resource_id }) 
-                      console.log('item.id:', item.resource_id);
+                      this.setState({ toggleValue: item.resource_id, resource_id: item.resource_id }) 
+                      console.log('update');
                     }}>UPDATE</button> 
                   </div>
                 :
                   <div>
-                    <p>Agency: <input placeholder={item.resource_name}></input></p>
-                    <p>Phone: <input placeholder={item.resource_phone}></input></p>
-                    <p>Address: <input placeholder={item.resource_location}></input></p>
-                    <p>Population Served: <input placeholder={item.resource_target}></input></p>
+                    <p>Agency: <input name="resource_name" placeholder={item.resource_name} onChange={this.handleChange}></input></p>
+                    <p>Phone: <input name="resource_phone"  placeholder={item.resource_phone} onChange={this.handleChange}></input></p>
+                    <p>Address: <input name="resource_location" placeholder={item.resource_location} onChange={this.handleChange}></input></p>
+                    <p>Population Served: <input name="resource_target" placeholder={item.resource_target} onChange={this.handleChange}></input></p>
                     <button className="button" onClick={ () => {       
                       this.setState({ toggleValue: 0 }) 
-                      console.log('item.id:', item.resource_id);
+                      console.log('save:', this.state);
                     }}>SAVE</button> 
                   </div>
               }         
