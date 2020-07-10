@@ -52,7 +52,7 @@ class ResourcePage extends Component {
                 this.state.toggleValue !== item.resource_id 
                 ? 
                   <div className="content">
-                    <h2>{item.resource_name}</h2> 
+                    <h3>{item.resource_name}</h3> 
                     <p>{item.resource_phone}</p> 
                     <p>{item.resource_location}</p>
                     <p>Population Served: {item.resource_target}</p>

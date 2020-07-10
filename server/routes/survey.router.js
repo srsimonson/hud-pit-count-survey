@@ -1,8 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     // let sqlText = `SELECT * FROM question
     // // JOIN response ON question.question_id = response.question_id;
     // // `
@@ -38,14 +39,16 @@ router.get('/', (req, res) => {
     })
 });
 
-router.get('/all', (req, res) => {
+router.get('/all', rejectUnauthenticated, (req, res) => {
     let sqlText = (req.user.admin === true) ? 
     `SELECT * FROM "user"
-    JOIN survey ON "user".id=survey.user_id;`
+    JOIN survey ON "user".id=survey.user_id
+    ORDER BY survey_id ASC;`
     :
      `SELECT * FROM "user"
     JOIN survey ON "user".id=survey.user_id
-    WHERE "user_id"=${req.user.id};`;
+    WHERE "user_id"=${req.user.id}
+    ORDER BY survey_id ASC;`;
     pool.query(sqlText)
     .then(result => {
         res.send(result.rows);
@@ -56,7 +59,7 @@ router.get('/all', (req, res) => {
     })
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     let user_id = req.body.user_id;
     // let surveyAnswer = req.body.survey_q1;
     console.log('req.body:', req.body);
@@ -104,7 +107,7 @@ router.post('/', (req, res) => {
     })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.params', req.params);
     let sqlText = `DELETE FROM survey WHERE survey_id = $1;`;
     pool.query(sqlText, [req.params.id])

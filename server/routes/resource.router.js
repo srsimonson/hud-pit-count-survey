@@ -1,11 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     let sqlText = `SELECT * FROM resource
     ORDER BY resource_name ASC;`;
     pool.query(sqlText)
@@ -18,7 +19,7 @@ router.get('/', (req, res) => {
     })
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.body:', req.body);
     console.log('req.params:', req.params);
     
