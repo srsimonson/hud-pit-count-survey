@@ -92,33 +92,26 @@ class NewSurvey extends Component {
                 <input ref="clear" type={question && question.response_type} onChange={(event) => this.handleChange(event, `survey_q${this.state.counter+1}`)}></input> 
               :
               // THIS CODE WORKS. IF NEEDED FOR PRESENTATION
-               <select ref="clear" onChange={(event) => this.handleChange(event, `survey_q${this.state.counter+1}`)}>
-                 <option value="" disabled selected value>Choose</option>
-                 <option value='yes'>YES</option>
-                 <option value='no'>NO</option>
-                 <option value='dk/ref'>DON'T KNOW / REFUSED</option>
-               </select>
-
-              
-              // <select ref="clear" onChange={(event) => this.handleChange(event, `survey_q${this.state.counter+1}`)}>
-              //     <option value="" disabled selected value>Choose</option>
-              //     <option value={question && question.dropdown_option[0]}>{question && question.dropdown_option[0]}</option>
-              //     {question map here}
-
-              //      <option value={question && question.dropdown_option[1]}>{question && question.dropdown_option[1]}</option>
-              //     <option value={question && question.dropdown_option[2]}>{question && question.dropdown_option[2]}</option>
-              //     <option value={question && question.dropdown_option[3]}>{question && question.dropdown_option[3]}</option>
-              //     <option value={question && question.dropdown_option[4]}>{question && question.dropdown_option[4]}</option>
-              //     <option value={question && question.dropdown_option[5]}>{question && question.dropdown_option[5]}</option>
-              //     <option value={question && question.dropdown_option[6]}>{question && question.dropdown_option[6]}</option>
-              //     <option value={question && question.dropdown_option[7]}>{question && question.dropdown_option[7]}</option>
-              //     <option value={question && question.dropdown_option[8]}>{question && question.dropdown_option[8]}</option>
-              //     <option value={question && question.dropdown_option[9]}>{question && question.dropdown_option[9]}</option> */}
-               
+              //  <select ref="clear" onChange={(event) => this.handleChange(event, `survey_q${this.state.counter+1}`)}>
+              //    <option value="" disabled selected value>Choose</option>
+              //    <option value='yes'>YES</option>
+              //    <option value='no'>NO</option>
+              //    <option value='dk/ref'>DON'T KNOW / REFUSED</option>
               //  </select>
+              // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+              <select ref="clear" onChange={(event) => this.handleChange(event, `survey_q${this.state.counter+1}`)}>
+                <option value="" disabled selected value>Choose</option>
+                {/* Dynamically populates dropdown options */}
+                  {question && question.dropdown_option.map(item => (
+                    <option value={item}>{item}</option>
+                  ))}
+              </select>
 
 
-               }
+
+              //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+              }
             <br/>
             <button className="button" onClick={this.back}>Back</button>
             <button className="button" onClick={this.next}>Next</button >
@@ -126,7 +119,7 @@ class NewSurvey extends Component {
           </p>
           <p>{question && JSON.stringify(question.dropdown_option)}</p>
 
-          <p>{this.props.reduxStore.loadSurvey[7] && JSON.stringify(this.props.reduxStore.loadSurvey[7].test)}</p>
+          {/* <p>{this.props.reduxStore.loadSurvey[7] && JSON.stringify(this.props.reduxStore.loadSurvey[7].test)}</p> */}
           </div>
         </div>
       </>

@@ -45,13 +45,13 @@ class ResourcePage extends Component {
     return (
       <div>
         <h1>Resources</h1>
-        <ul> {/* Display List of Info */}
+        <ul> {/* Display list of resources. */}
           {this.props.reduxStore.resourceReducer.map(item =>
-            <li key={item.id}>
+            <li key={item.id} className="container">
               {
                 this.state.toggleValue !== item.resource_id 
                 ? 
-                  <div>
+                  <div className="content">
                     <h2>{item.resource_name}</h2> 
                     <p>{item.resource_phone}</p> 
                     <p>{item.resource_location}</p>
@@ -60,7 +60,7 @@ class ResourcePage extends Component {
                     }}>UPDATE</button> 
                   </div>
                 :
-                  <div>
+                  <div className="content"> {/* Toggle to edit list of resources. */}
                     <label>Agency:</label> <input name="resource_name" placeholder={item.resource_name} onChange={this.handleChange}></input>
                     <label>Phone:</label> <input name="resource_phone"  placeholder={item.resource_phone} onChange={this.handleChange}></input>
                     <label>Address:</label> <input name="resource_location" placeholder={item.resource_location} onChange={this.handleChange}></input>

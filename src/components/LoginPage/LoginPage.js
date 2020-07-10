@@ -40,9 +40,9 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form onSubmit={this.login}>
+        <form onSubmit={this.login} className="container">
           <h1>Login</h1>
-          <div>
+          <div className="content">
             <label htmlFor="username">
               Username:
               <input
@@ -53,7 +53,7 @@ class LoginPage extends Component {
               />
             </label>
           </div>
-          <div>
+          <div className="content">
             <label htmlFor="password">
               Password:
               <input
