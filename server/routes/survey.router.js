@@ -24,7 +24,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 // let sqlText = `SELECT * FROM question ORDER BY question.question_id ASC;`;
 
-    let sqlText = `SELECT question.question_id, question.question_text, question.response_type, json_agg(response.description) 
+    let sqlText = `SELECT question.question_id, question.question_header, question.question_text, question.response_type, json_agg(response.description) 
     AS dropdown_option FROM question
     JOIN response ON question.question_id = response.question_id
     GROUP BY question.question_id

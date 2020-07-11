@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import './InfoPage.scss';
+
 
 class InfoPage extends Component {
   componentDidMount() {
@@ -21,22 +23,12 @@ class InfoPage extends Component {
     
     return (
       <div>
-        <h1> SURVEY DATA</h1>
-        {/* <p>Currently logged in as <b>{this.props.user.username}</b></p>
-        <p>Clearance level: <b>{this.props.user.clearance_level}</b></p>
-        <ul>
-          {this.props.secrets.map(secret => (
-            <li>
-              Clearance: {secret.secrecy_level} | Content: {secret.content}
-            </li>
-          ))}
-        </ul> */}
-        
+        <h1> MY COUNT DATA</h1>
         <table>
         <thead>
           <tr>
-              <th>Survey ID</th>
-              <th>User ID</th>
+              <th>Count</th>
+              <th>User</th>
               <th>Location</th>
               <th>Date</th>
               <th>Time</th>
@@ -69,11 +61,11 @@ class InfoPage extends Component {
               <th>Disab_6</th>
               <th>Disab_7</th>
               <th>DV</th>
-              <th colspan="2">Manage Data</th>
+              <th colspan="2"><button className="button success tiny">EXPORT TO CSV</button></th>
           </tr>
         </thead>
           {surveyResponse.map(item =>
-            <tr key={item.id}>
+            <tr key={item.id} className="rows">
               <td>{item.survey_id}</td>
               <td>{item.user_id}</td>
               <td>
@@ -112,14 +104,14 @@ class InfoPage extends Component {
               <td>{item.survey_q31}</td>
               <td>{item.survey_q32}</td>
               <td>{/* update button */}
-                <button className="button" onClick={ () => this.props.dispatch({ type: 'UPDATE_ANSWER', payload: item.survey_id })}>UPDATE</button>
+                <button className="button tiny" onClick={ () => this.props.dispatch({ type: 'UPDATE_ANSWER', payload: item.survey_id })}>UPDATE</button>
               </td>
               {/* <td>
                 <button className="button" onClick={ () => this.props.dispatch({ type: 'DELETE_ANSWER', payload: item.survey_id}) }>DELETE</button>
               </td> */}
 
               <td> {/* delete button with alert*/}
-                <button className="button" onClick={ () => { confirmAlert({
+                <button className="hollow button tiny" onClick={ () => { confirmAlert({
                       title: 'Are you sure?',
                       message: 'Data cannot be recovered once deleted.',
                       buttons: [

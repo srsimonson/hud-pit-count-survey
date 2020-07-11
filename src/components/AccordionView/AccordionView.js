@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './AccordionView.scss';
-// // import bulmaCollapsible from '@creativebulma/bulma-collapsible';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import {Accordion, Card} from 'react-bootstrap';
-// import { Accordion, AccordionItem } from 'react-light-accordion'
 import { Accordion, AccordionItem } from 'react-sanfona';
 
 
@@ -73,8 +69,8 @@ class AccordionView extends Component {
   }
 
   render() {
-    // console.log('asdf this.state', this.state);
-    // console.log('this.props.reduxStore:', this.props.reduxStore);
+    console.log('asdf this.state', this.state);
+    console.log('this.props.reduxStore:', this.props.reduxStore);
     const question = this.props.reduxStore.loadSurvey
     return (
       <>
@@ -90,10 +86,12 @@ class AccordionView extends Component {
                 <input type={item.response_type} onChange={this.handleChange}></input> 
               :
                <select onChange={this.handleChange}>
-                 <option disabled selected value>Choose</option>
-                 <option value='test_one'>TEST 1</option>
-                 <option value='test_two'>TEST 2</option>
-               </select> 
+                 <option value="" disabled selected value>Choose</option>
+                {/* If dropdown, options dynamically populate from response table in db */}
+                  {item.dropdown_option.map(item => (
+                    <option value={item}>{item}</option>
+                  ))}
+              </select> 
                }
               </div>
             </AccordionItem>

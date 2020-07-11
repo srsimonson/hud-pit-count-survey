@@ -23,11 +23,10 @@ viewCompletedSurveys = () => {
 render () {
   return (
     <div>
-    <button className="button" onClick={ this.startNewSurvey }>Start New Survey</button>
-    <br/>
-    <button className="button" onClick={ this.accordionNewSurvey }>AccordionView New Survey</button>
-    <br/>
-    <button className="button" onClick={ this.viewCompletedSurveys }>View Completed Surveys</button>
+    <button className="button" onClick={ this.startNewSurvey }>Start New Count</button>
+    {/* <button className="button" onClick={ this.accordionNewSurvey }>AccordionView New Survey</button> */}
+    <button className="button" onClick={ this.viewCompletedSurveys }>View My Counts</button>
+    {/* <button className= "button" onClick={ () => this.props.dispatch({ type: 'LOGOUT' })} >Log Out</button> */}
   </div>
   )
 }

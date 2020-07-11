@@ -6,9 +6,6 @@ import './Nav.scss';
 
 const Nav = (props) => (
   <div className="nav">
-    <Link to="/home">
-      <h2 className="nav-title">Prime Solo Project</h2>
-    </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/home">
         {/* Show this link if they are logged in or not,
@@ -16,37 +13,17 @@ const Nav = (props) => (
         and call this link 'Login / Register' if they are not */}
         {props.user.id ? 'Home' : 'Login / Register'}
       </Link>
-      {/* Show the link to the info page and the logout button if the user is logged in */}
+        {/* Show the link to the info page and the logout button if the user is logged in */}
       {props.user.id && (
         <>
-          <Link className="nav-link" to="/NewSurvey">
-            NewSurvey
-          </Link>
-          <Link className="nav-link" to="/AccordionView">
-            AccordionView
-          </Link>
-          <Link className="nav-link" to="/info">
-            Data
-          </Link>
+          {/* <Link className="nav-link" to="/NewSurvey">NewSurvey</Link>
+          <Link className="nav-link" to="/AccordionView">AccordionView</Link> */}
+          <Link className="nav-link" to="/info">Data</Link>
+          <Link className="nav-link" to="/resource">Resources</Link>
         </>
       )}
-
-      {props.user.id && (
-        <>
-
-          <LogOutButton className="nav-link"/>
-        </>
-      )} 
-
-
-
-
-
-      {/* Always show this link since the about page is not protected */}
-      <Link className="nav-link" to="/resource">
-        Resources
-      </Link>
-    </div>
+      {props.user.id && ( 
+      <LogOutButton className="nav-link"/> )} </div>
   </div>
 );
 

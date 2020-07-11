@@ -5,7 +5,7 @@ import './NewSurvey.scss';
 
 class NewSurvey extends Component {
   state = {
-    counter: 0, // indicates question id shown on DOM
+    counter: 0, // informs dom of question to display on next/back
     user_id: this.props.reduxStore.user.id
   }
 
@@ -18,6 +18,10 @@ class NewSurvey extends Component {
       counter: 0,
       user_id: this.props.reduxStore.user.id
     })
+  }
+  accordionNewSurvey = () => {
+    this.props.dispatch ({ type: 'FETCH_NEW_SURVEY'});
+    this.props.history.push('/AccordionView')
   }
 
   handleChange = (event, type) => {
@@ -42,9 +46,8 @@ class NewSurvey extends Component {
     });
     this.setState({ counter: this.state.counter +1 })
     this.refs.clear.value = ''
-
-    if ( this.props.reduxStore.loadSurvey[this.state.counter].question_id === 24) {
-      console.log('QCWQWERTYUIOPASDFGHJKLZXCVBNM<QWERTYUIOPASDFGHJKLZXCVBNMZAWSXEDCRFVTBGYNUMIMNUHBYGVTFCRDXERCFTVGYBHUNJHBYGVTFCVGYBHUNJ');
+    if ( this.props.reduxStore.loadSurvey[this.state.counter].question_id === 32) {
+      console.log('Trigger end screen');
     
     } 
   }
@@ -53,14 +56,11 @@ class NewSurvey extends Component {
     this.setState({
       counter: this.state.counter -1
     })
-    console.log('BACK this.state:', this.state);
-    console.log('this.props.reduxStore.loadSurvey[counter].question_id', this.props.reduxStore.loadSurvey[this.state.counter].question_id);
   }
 
   render() {
    const question = this.props.reduxStore.loadSurvey[this.state.counter]
     return (
-      <>
         <div className="container">
           <div className="content">
           <h1>HUD Point-In-Time Count</h1>
@@ -79,13 +79,16 @@ class NewSurvey extends Component {
               </select>
             }
             <br/>
-            <button className="button" onClick={this.back}>Back</button>
-            <button className="button" onClick={this.next}>Next</button >
-            <button className="button" onClick={this.save}>SAVE</button>
+            <div className="center-buttons">
+              <button className="button" onClick={this.back}>Back</button>
+              <button className="button" onClick={ this.accordionNewSurvey }>Outline</button>
+              <button className="button" onClick={this.next}>Next</button >
+              {/* <button className="button" onClick={this.save}>SAVE</button> */}
+            </div>
+
           </p>
           </div>
         </div>
-      </>
     );
   }
 }

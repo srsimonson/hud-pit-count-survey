@@ -41,7 +41,7 @@ class LoginPage extends Component {
           </h2>
         )}
         <form onSubmit={this.login} className="container">
-          <h1>Login</h1>
+          <h1>HUD Point-In-Time Count</h1>
           <div className="content">
             <label htmlFor="username">
               Username:
@@ -64,9 +64,9 @@ class LoginPage extends Component {
               />
             </label>
           </div>
-          <div>
+          <div className="content">
             <input
-              className="log-in"
+              className="button"
               type="submit"
               name="submit"
               value="Log In"
@@ -74,13 +74,7 @@ class LoginPage extends Component {
           </div>
         </form>
         <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
-          >
-            Register
-          </button>
+          <button type="buton" className="clear button" onClick={() => {this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' })} }>Register New User</button>
         </center>
       </div>
     );
