@@ -18,6 +18,7 @@ accordionNewSurvey = () => {
 
 viewCompletedSurveys = () => {
   this.props.dispatch ({ type: 'FETCH_ALL_SURVEYS'});
+  this.props.history.push('/info')
 }
 
 render () {

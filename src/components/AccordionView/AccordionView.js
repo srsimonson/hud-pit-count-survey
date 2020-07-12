@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import './AccordionView.scss';
 import { Accordion, AccordionItem } from 'react-sanfona';
 
-
 class AccordionView extends Component {
 
+  // Accordion view no longer updates state correctly. Each question needs to direct to its state value.
   state = {
     counter: 0,
     user_id: this.props.reduxStore.user.id,
@@ -55,7 +55,6 @@ class AccordionView extends Component {
   }
 
   handleChange = (event) => {
-    console.log('AccordionView event.target.value', event.target.value);
     this.setState({
       surveyAnswer: event.target.value
     })
@@ -69,8 +68,6 @@ class AccordionView extends Component {
   }
 
   render() {
-    console.log('asdf this.state', this.state);
-    console.log('this.props.reduxStore:', this.props.reduxStore);
     const question = this.props.reduxStore.loadSurvey
     return (
       <>
@@ -86,8 +83,8 @@ class AccordionView extends Component {
                 <input type={item.response_type} onChange={this.handleChange}></input> 
               :
                <select onChange={this.handleChange}>
-                 <option value="" disabled selected value>Choose</option>
-                {/* If dropdown, options dynamically populate from response table in db */}
+                 <option value=" " disabled selected value>Choose</option>
+                {/* If dropdown, options populate from response table in db */}
                   {item.dropdown_option.map(item => (
                     <option value={item}>{item}</option>
                   ))}
@@ -98,8 +95,8 @@ class AccordionView extends Component {
           );
         })}
       </Accordion>
-      <button className="button">BACK</button>
-      <button className="button" onClick={this.save}>SAVE</button>
+      {/* <button className="button">BACK</button> */}
+      <button className="button expanded" onClick={this.save}>SAVE</button>
       </>
     );
   }

@@ -4,12 +4,9 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import './InfoPage.scss';
 
-
 class InfoPage extends Component {
   componentDidMount() {
     this.props.dispatch({type: 'FETCH_ALL_SURVEYS'})
-    // this.props.dispatch ({type: 'FETCH_NEW_SURVEY'})
-    console.log('this.props.reduxStore.loadSurvey', this.props.reduxStore.loadSurvey);
   }
 
   update = () => {
@@ -18,12 +15,10 @@ class InfoPage extends Component {
   }
 
   render() {
-    const surveyResponse = this.props.reduxStore.loadSurvey
-    console.log('hi', this.props.reduxStore);
-    
+    const surveyResponse = this.props.reduxStore.loadSurvey;
     return (
       <div>
-        <h1> MY COUNT DATA</h1>
+        <h1 id="data_header"> MY COUNT DATA</h1>
         <table>
         <thead>
           <tr>
@@ -61,6 +56,7 @@ class InfoPage extends Component {
               <th>Disab_6</th>
               <th>Disab_7</th>
               <th>DV</th>
+            {/* Export to CSV */}
               <th colspan="2"><button className="button success tiny">EXPORT TO CSV</button></th>
           </tr>
         </thead>
@@ -68,10 +64,7 @@ class InfoPage extends Component {
             <tr key={item.id} className="rows">
               <td>{item.survey_id}</td>
               <td>{item.user_id}</td>
-              <td>
-                {/* <input placeholder = {item.survey_location}></input> */}
-                {item.survey_q1}
-              </td>
+              <td>{item.survey_q1}</td>
               <td>{item.survey_q2}</td>
               <td>{item.survey_q3}</td>
               <td>{item.survey_q4}</td>
@@ -106,28 +99,22 @@ class InfoPage extends Component {
               <td>{/* update button */}
                 <button className="button tiny" onClick={ () => this.props.dispatch({ type: 'UPDATE_ANSWER', payload: item.survey_id })}>UPDATE</button>
               </td>
-              {/* <td>
-                <button className="button" onClick={ () => this.props.dispatch({ type: 'DELETE_ANSWER', payload: item.survey_id}) }>DELETE</button>
-              </td> */}
-
               <td> {/* delete button with alert*/}
                 <button className="hollow button tiny" onClick={ () => { confirmAlert({
-                      title: 'Are you sure?',
-                      message: 'Data cannot be recovered once deleted.',
-                      buttons: [
-                        { label: 'Nevermind, take me back', onClick: () => console.log('delete canceled')
-                      },
-                        { label: 'Yes, Delete',
-                          onClick: () => this.props.dispatch({ type: 'DELETE_ANSWER', payload: item.survey_id}) 
-                        }
-                      ]
-                    });
-                  }}>DELETE</button>
+                  title: 'Are you sure?',
+                  message: 'Data cannot be recovered once deleted.',
+                  buttons: [
+                    { label: 'Nevermind, take me back', 
+                        onClick: () => console.log('delete canceled') },
+                    { label: 'Yes, Delete', 
+                        onClick: () => this.props.dispatch({ type: 'DELETE_ANSWER', payload: item.survey_id}) 
+                    }]
+                  });
+                }}>DELETE</button>
               </td>
             </tr>
             )}
         </table>
-        {/* <p>{JSON.stringify(surveyResponse)}</p> */}
       </div>
     );
   }
@@ -135,10 +122,3 @@ class InfoPage extends Component {
 
 const mapStateToProps = (reduxStore) => ({ reduxStore });
 export default connect(mapStateToProps)(InfoPage);
-
-// const mapStateToProps = state => ({
-//   // secrets: state.secrets,
-//   // user: state.user,
-// });
-
-// export default connect(mapStateToProps)(InfoPage);

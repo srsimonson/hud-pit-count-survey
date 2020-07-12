@@ -1,3 +1,9 @@
+@import 'src/index.scss';
+
 footer {
     margin-top: 80px;
+    // background-color: $primary;
+    font-family: $font-family;
+    // color: $tertiary;
+    text-align: center;
 }

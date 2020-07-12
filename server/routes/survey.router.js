@@ -4,26 +4,6 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-    // let sqlText = `SELECT * FROM question
-    // // JOIN response ON question.question_id = response.question_id;
-    // // `
-    // let sqlText = `SELECT question.question_id, question.question_text, json_agg(response.description) AS test FROM question
-    // JOIN response ON question.question_id = response.question_id
-    // GROUP BY question.question_id
-    // ORDER BY question.question_id ASC;`
-
-    
-    // let sqlText = `SELECT * FROM question
-    // JOIN response ON question.question_id = response.question_id
-    // ORDER BY question.question_id ASC;`;
-
-    // SELECT question.question_id, question.question_text, question.response_type, json_agg(response.description) AS dropdown_option FROM question
-    // JOIN response ON question.question_id = response.question_id
-    // GROUP BY question.question_id
-    // ORDER BY question.question_id ASC;
-
-// let sqlText = `SELECT * FROM question ORDER BY question.question_id ASC;`;
-
     let sqlText = `SELECT question.question_id, question.question_header, question.question_text, question.response_type, json_agg(response.description) 
     AS dropdown_option FROM question
     JOIN response ON question.question_id = response.question_id

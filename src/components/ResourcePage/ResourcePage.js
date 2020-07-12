@@ -22,8 +22,6 @@ class ResourcePage extends Component {
       ...this.state, // what does this do? works both with and without this.
       [event.target.name]: event.target.value
     });
-    console.log('this.state', this.state);
-    
   }
 
   updateResource = () => {
@@ -58,20 +56,16 @@ class ResourcePage extends Component {
                     <p>Population Served: {item.resource_target}</p>
                     <button className="button" onClick={ () => { this.setState({ toggleValue: item.resource_id, resource_id: item.resource_id });
                     }}>UPDATE</button> 
-                  </div>
+                  </div> 
                 :
-                  <div className="content"> {/* Toggle to edit list of resources. */}
+                  <form className="content"> {/* Toggle to edit list of resources. */}
                     <label>Agency:</label> <input name="resource_name" placeholder={item.resource_name} onChange={this.handleChange}></input>
                     <label>Phone:</label> <input name="resource_phone"  placeholder={item.resource_phone} onChange={this.handleChange}></input>
                     <label>Address:</label> <input name="resource_location" placeholder={item.resource_location} onChange={this.handleChange}></input>
                     <label>Population Served:</label> <input name="resource_target" placeholder={item.resource_target} onChange={this.handleChange}></input>
-                    <button className="success button" onClick={this.updateResource}>SAVE</button>
-                      
-                       {/* () => {        
-                       this.setState({ toggleValue: 0 }) 
-                       console.log('save:', this.state);
-                     }}>SAVE</button>  */}
-                  </div>
+                    <br/>
+                    <button className="button success" onClick={this.updateResource}>SAVE</button>
+                  </form>
               }         
             </li>)}
         </ul>
