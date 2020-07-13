@@ -44,7 +44,9 @@ class NewSurvey extends Component {
       type: 'SET_ANSWER', // was save answer 
       payload: this.state
     });
-    this.setState({ counter: this.state.counter +1 })
+    this.setState({ 
+      counter: this.state.counter +1 
+    })
     this.refs.clear.value = ''
   }
 

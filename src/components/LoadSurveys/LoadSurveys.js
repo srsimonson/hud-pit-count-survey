@@ -23,7 +23,7 @@ viewCompletedSurveys = () => {
 
 render () {
   return (
-    <div>
+    <div className="center-buttons">
     <button className="button" onClick={ this.startNewSurvey }>Start New Count</button>
     {/* <button className="button" onClick={ this.accordionNewSurvey }>AccordionView New Survey</button> */}
     <button className="button" onClick={ this.viewCompletedSurveys }>View My Counts</button>

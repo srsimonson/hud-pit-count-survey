@@ -42,7 +42,11 @@ class ResourcePage extends Component {
   render() {
     return (
       <div>
-        <h1>Resources</h1>
+          <br/>
+        <h1>Count complete! 
+          <br/>
+        Thank you for your participation. 
+        </h1>
         <ul> {/* Display list of resources. */}
           {this.props.reduxStore.resourceReducer.map(item =>
             <li key={item.id} className="container">
