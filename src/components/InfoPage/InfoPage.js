@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import './InfoPage.scss';
+import CsvDownloader from 'react-csv-downloader';
 
 class InfoPage extends Component {
   componentDidMount() {
@@ -15,6 +16,22 @@ class InfoPage extends Component {
   }
 
   render() {
+    // Dummy data for CSV.
+    const datas = [{
+      cell1: 'row 1 - cell 1',
+      cell2: 'row 1 - cell 2'
+    }, {
+      cell1: 'row 2 - cell 1',
+      cell2: 'row 2 - cell 2'
+    }];
+    const columns = [{
+      id: 'cell1',
+      displayName: 'Cell 1'
+    }, {
+      id: 'cell2',
+      displayName: 'Cell 2'
+    }]; // END dummy data for CSV.
+
     const surveyResponse = this.props.reduxStore.loadSurvey;
     return (
       <div>
@@ -57,7 +74,17 @@ class InfoPage extends Component {
               <th>Disab_7</th>
               <th>DV</th>
             {/* Export to CSV */}
-              <th colspan="2"><button className="button success tiny">EXPORT TO CSV</button></th>
+              <th colspan="2">
+                <CsvDownloader 
+                  filename="PIT_COUNT_DATA"
+                  separator=";"
+                  wrapColumnChar="'"
+                  columns={columns}
+                  datas={datas}
+                  text="DOWNLOAD" >
+                  <button className="button success tiny">EXPORT TO CSV</button>
+                </CsvDownloader>
+              </th>
           </tr>
         </thead>
           {surveyResponse.map(item =>
