@@ -66,7 +66,7 @@ class AccordionView extends Component {
         })}
       </Accordion>
       {/* <button className="button">BACK</button> */}
-      <button className="button expanded" onClick={this.save}>SAVE</button>
+      <button className="button expanded" onClick={this.save}>SUBMIT</button>
       </>
     );
   }

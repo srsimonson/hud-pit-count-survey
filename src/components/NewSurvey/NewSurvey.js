@@ -87,7 +87,7 @@ class NewSurvey extends Component {
                 <button className="hollow button large" onClick={ this.accordionNewSurvey }>Outline</button>
             {/* "Next" toggles to "Save" at final question. Add thank you screen for version 2. */}
               {question && question.question_id === 32 ? 
-                <button className="button success large" onClick={this.save}>SAVE</button> :
+                <button className="button success large" onClick={this.save}>SUBMIT</button> :
                 <button className="button large" onClick={this.next}>Next</button >
               }
             </div>
