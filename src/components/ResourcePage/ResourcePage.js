@@ -73,49 +73,6 @@ class ResourcePage extends Component {
               }         
             </li>)}
         </ul>
-
-
-
-
-
-
-
-
-          {/* THIS IS ALL GOOD */}
-
-
-        {/* {this.state.toggleValue ? 
-        <ul> {/* Display List of Info 
-          {this.props.reduxStore.resourceReducer.map(item =>
-            <li key={item.id}>
-
-              {item.resource_target} {item.resource_name} {item.resource_phone} {item.resource_location}
-                      
-            <button className="button" 
-            onClick={ () => {      
-              if (item.resource_name === item.resource_name) {
-                console.log(`this resource is: ${item.resource_name}`);
-                
-              } 
-                this.setState({
-                  toggleValue: !this.state.toggleValue
-            })
-          }}>UPDATE</button></li>)}
-        </ul> 
-        : 
-        <ul> {/* Edit List of Info 
-          {this.props.reduxStore.resourceReducer.map(item =>
-          <li key={item.id}> <input placeholder={item.resource_target}></input> 
-            <input placeholder={item.resource_name}></input> <input placeholder={item.resource_phone}></input> <input placeholder={item.resource_location}></input>        
-          <button className="button" 
-            onClick={ () => {       
-            // console.log('this resource is:', item.resource_name);
-            this.setState({
-              toggleValue: !this.state.toggleValue
-        })
-          }}>SAVE</button></li>)}
-        </ul>} */}
-        {/* <button className="button">SAVE</button> */}
       </div>
     );
   }
